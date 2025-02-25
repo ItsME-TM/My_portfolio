@@ -43,13 +43,52 @@
                         I am eager to contribute my knowledge and creativity to impactful projects while 
                         continuously growing as a developer.</p>
                     <div class="tab-titles">
-                        <p class = "tab-links active-link"> Skills</p>
-                        <p class = "tab-links"> Experience</p>
-                        <p class = "tab-links"> Education</p>
+                        <p class = "tab-links active-link" onclick="opentab('skills')"> Skills</p>
+                        <p class = "tab-links" onclick="opentab('Certifications and Awards')"> Certifications and Awards</p>
+                        <p class = "tab-links" onclick="opentab('Education')"> Education</p>
+                    </div>
+                    <div class="tab-contents active-tab" id = "skills">
+                        <ul>
+                            <li><span> Programming Languages </span><br>Python, Java, C++, PHP, JavaScript, TypeScript</li>
+                            <li><span> Databases </span><br>MySQL, MongoDB, SQLite</li>
+                            <li><span> Web Technologies </span><br>CSS, HTML, React, Node.js, Express, PHP</li>
+                            <li><span> Tools & Methodologies </span><br> GitHub, Git, Jira, Agile</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id = "Certifications and Awards">
+                        <ul>
+                            <li><a href="https://coursera.org/share/9789c5fcd41969a85f3aa3260ebb4d08" target="_blank"><span> Web Development</span></a><br></li>
+                            <li><a href="https://coursera.org/share/390f80535f1e7f7e4e67fe157968178f" target="_blank"><span> Python Data Structures</span></a><br></li>
+                            <li><a href="  https://coursera.org/share/1e5896e8ddb78b6510cb25724b93e943" target="_blank"><span> Python to Access Web Data</span></a><br></li>
+                            <li><a href=" https://coursera.org/share/27f57b505a34c69950119f9d5c3e4064" target="_blank"><span> Google IT Support</span></a><br></li>
+                            <li><span> IEEE Xtreme 16.0 </span><br></li>
+                            <li><span> IEEE Xtreme 17.0 </span><br></li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id = "Education">
+                        <ul>
+                            <li><span>2011 - 2019</span><br>Bandaranayake College Gampaha</li>
+                            <li><span>2021 - 2025</span><br>BSc. Engineering (Hons.) In Computer Engineering<br>University of Jaffna</li>
+                        </ul>
                     </div>
                 </div>                   
             </div>
         </div>
     </div>
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+
+        function opentab(tabname){
+            for (tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+            for (tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
 </body>
 </html>
