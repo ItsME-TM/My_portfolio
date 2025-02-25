@@ -89,7 +89,6 @@
                     <h2>Mobile App Development</h2>
                     <p>I build cross-platform mobile apps with React Native, integrating 
                         authentication, APIs, and smooth UI/UX.</p>
-                    <a href = '#'> Learn More</a>
                 </div>
                 <div>
                     <i class="fa-solid fa-laptop"></i>
@@ -97,14 +96,12 @@
                     <p>I build scalable and dynamic web applications using MERN stack, PHP, MySQL, 
                         and JavaScript, ensuring both frontend and backend functionality with a 
                         smooth user experience.</p>
-                    <a href = '#'> Learn More</a>
                 </div>
                 <div>
                     <i class="fa-solid fa-hexagon-nodes"></i>
                     <h2>Machine Learning & AI</h2>
                     <p>I develop deep learning models for tasks like face detection, 
                         gesture recognition, and handwritten digit classification.</p>
-                    <a href = '#'> Learn More</a>
                 </div>
             </div> 
         </div>
@@ -225,12 +222,13 @@
                     <a href="images/Thushan Ranasinghe.pdf" download class = "btn btn2" >Download CV</a>
                 </div>
                 <div class="contact-right">
-                    <form>
+                    <form name="submit-to-google-sheet">
                         <input type="text" name = "Name" placeholder="Your Name" required>
                         <input type="email" name = "Email" placeholder="Your Email" required>
                         <textarea name="Message" row = "6" placeholder="Your Message" required></textarea>
                         <button type = "submit" class = "btn btn2" >Submit</button>
                     </form>
+                    <span id = "msg"></span>
                 </div>
             </div>
         </div>
@@ -266,5 +264,22 @@
         }
 
     </script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxHGXwf71pGOqCMSKVhPh1jOdKewJKrjo6RsczMTP_S6lYAPUwxLix7krETgg7p3NN-Hg/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {msg.innerHTML = "Message Sent Successfully!"
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                }, 5000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
 </body>
 </html>
