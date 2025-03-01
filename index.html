@@ -147,7 +147,7 @@
                             <a href="https://github.com/ItsME-TM/Learn-PHP" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
-                    <div class="work">
+                    <div class="work hidden">
                         <img src="images/project4.png">
                         <div class="layer">
                             <h3>Face Detection</h3>
@@ -159,7 +159,7 @@
                             <a href="https://github.com/ItsME-TM/Real-Fake-Face-Detection" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
-                    <div class="work">
+                    <div class="work hidden">
                         <img src="images/project5.png">
                         <div class="layer">
                             <h3> Gesture Recognition</h3>
@@ -170,7 +170,7 @@
                             <a href="https://github.com/ItsME-TM/computer_vision_gesture_recognition" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
-                    <div class="work">
+                    <div class="work hidden">
                         <img src="images/project6.png">
                         <div class="layer">
                             <h3>Number Identifier</h3>
@@ -181,7 +181,7 @@
                             <a href="https://github.com/ItsME-TM/Number-Identifier" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
-                    <div class="work">
+                    <div class="work hidden">
                         <img src="images/project7.png">
                         <div class="layer">
                             <h3> AIML Assistant</h3>
@@ -192,7 +192,7 @@
                             <a href="https://github.com/ItsME-TM/My-Assistant" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
-                    <div class="work">
+                    <div class="work hidden">
                         <img src="images/project8.png">
                         <div class="layer">
                             <h3>My Website</h3>
@@ -204,6 +204,7 @@
                         </div>
                     </div>
                 </div>
+                <button class = "btn btn2 btn3">Show More</button>
         </div>
     </div>
 
@@ -237,7 +238,26 @@
         </div>
     </div>
 
+    <script>
+        document.querySelector('.btn.btn2.btn3').addEventListener('click', function () {
+            let hiddenProjects = document.querySelectorAll('.work.hidden');
+            let showMoreBtn = this;
 
+            let isHidden = [...hiddenProjects].some(project => !project.classList.contains('show'));
+
+            hiddenProjects.forEach(project => {
+                if (isHidden) {
+                    project.classList.add('show'); 
+                } else {
+                    project.classList.remove('show'); 
+                }
+            });
+
+            showMoreBtn.innerText = isHidden ? "Show Less" : "Show More";
+        });
+
+    </script>
+    
     <script>
         var tablinks = document.getElementsByClassName("tab-links");
         var tabcontents = document.getElementsByClassName("tab-contents");
