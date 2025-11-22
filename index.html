@@ -1,339 +1,480 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio Website</title>
-    <link rel = "stylesheet" href = "style.css">
-    <script src="https://kit.fontawesome.com/517d7a7b1a.js" crossorigin="anonymous"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/517d7a7b1a.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <div id="header">
-        <div class = "container">
-            <nav>
-                <img src = "images/logo.PNG" class = "logo">
-                <ul id = "sidemenu">
-                    <li><a href = "#header">Home</a></li>
-                    <li><a href = "#about">About</a></li>
-                    <li><a href = "#services">Services</a></li>
-                    <li><a href = "#projects">My Projects</a></li>
-                    <li><a href = "#contact">Contact</a></li>
-                    <i class="fa-solid fa-xmark" onclick = "closemenu()"></i>
-                </ul>
-                <i class="fa-solid fa-bars" onclick = "openmenu()"></i>
-            </nav>
-            <div class="header-text">
-                <p>Computer Engineering Undergraduate</p>
-                <h1>Hi, I'm <span>Thushan Malaka Ranasinghe</span><br> Welcome to my PortFolio</h1>
+      <div class="container">
+        <nav>
+          <img src="images/logo.PNG" class="logo" />
+          <ul id="sidemenu">
+            <li><a href="#header">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">My Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+          </ul>
+          <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+        </nav>
+        <div class="header-text">
+          <p>Computer Engineering Undergraduate</p>
+          <h1>
+            Hi, I'm <span>Thushan Malaka Ranasinghe</span><br />
+            Welcome to my PortFolio
+          </h1>
+        </div>
+      </div>
+    </div>
+    <!-- About Me -->
+    <div id="about">
+      <div class="container">
+        <div class="row">
+          <div class="about-col-1">
+            <img src="images/user.PNG" />
+          </div>
+          <div class="about-col-2">
+            <h1 class="sub-title">About Me</h1>
+            <p>
+              Hi, I’m Thushan Malaka, a passionate and driven Computer
+              Engineering student with a strong interest in software
+              development, artificial intelligence, and data engineering. I
+              enjoy solving complex problems and building innovative solutions
+              using technologies like Java, JavaScript, and machine learning.
+              With hands-on experience in developing applications and working
+              with data, I am constantly learning and improving my skills to
+              stay ahead in the tech industry. I am eager to contribute my
+              knowledge and creativity to impactful projects while continuously
+              growing as a developer.
+            </p>
+            <div class="tab-titles">
+              <p class="tab-links active-link" onclick="opentab('skills')">
+                Skills
+              </p>
+              <p
+                class="tab-links"
+                onclick="opentab('Certifications and Awards')"
+              >
+                Certifications and Awards
+              </p>
+              <p class="tab-links" onclick="opentab('Education')">Education</p>
             </div>
-        </div>
-    </div>
-<!-- About Me -->
-    <div id = "about">
-        <div class= "container">
-            <div class= "row">
-                <div class= "about-col-1">
-                    <img src= "images/user.PNG">
-                </div>
-                <div class= "about-col-2">
-                    <h1 class = "sub-title" >About Me</h1>
-                    <p>Hi, I’m Thushan Malaka, a passionate and driven Computer Engineering student 
-                        with a strong interest in software development, artificial intelligence, and 
-                        data engineering. I enjoy solving complex problems and building innovative 
-                        solutions using technologies like Java, JavaScript, and machine learning. With 
-                        hands-on experience in developing applications and working with data, I am 
-                        constantly learning and improving my skills to stay ahead in the tech industry. 
-                        I am eager to contribute my knowledge and creativity to impactful projects while 
-                        continuously growing as a developer.</p>
-                    <div class="tab-titles">
-                        <p class = "tab-links active-link" onclick="opentab('skills')"> Skills</p>
-                        <p class = "tab-links" onclick="opentab('Certifications and Awards')"> Certifications and Awards</p>
-                        <p class = "tab-links" onclick="opentab('Education')"> Education</p>
-                    </div>
-                    <div class="tab-contents active-tab" id = "skills">
-                        <ul>
-                            <li><span> Programming Languages </span><br>Python, Java, C++, PHP, JavaScript, TypeScript</li>
-                            <li><span> Databases </span><br>MySQL, MongoDB, SQLite</li>
-                            <li><span> Web Technologies </span><br>CSS, HTML, React, Node.js, Express, NestJS</li>
-                            <li><span> Tools & Methodologies </span><br> GitHub, Git, Jira, Agile, BitBucket</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id = "Certifications and Awards">
-                        <ul>
-                            <li><a href="https://coursera.org/share/9789c5fcd41969a85f3aa3260ebb4d08" target="_blank"><span> Web Development</span></a><br></li>
-                            <li><a href="https://coursera.org/share/390f80535f1e7f7e4e67fe157968178f" target="_blank"><span> Python Data Structures</span></a><br></li>
-                            <li><a href="  https://coursera.org/share/1e5896e8ddb78b6510cb25724b93e943" target="_blank"><span> Python to Access Web Data</span></a><br></li>
-                            <li><a href=" https://coursera.org/share/27f57b505a34c69950119f9d5c3e4064" target="_blank"><span> Google IT Support</span></a><br></li>
-                            <li><span> IEEE Xtreme 16.0 </span><br></li>
-                            <li><span> IEEE Xtreme 17.0 </span><br></li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id = "Education">
-                        <ul>
-                            <li><span>2011 - 2019</span><br>Bandaranayake College Gampaha</li>
-                            <li><span>2021 - 2025</span><br>BSc. Engineering (Hons.) In Computer Engineering<br>University of Jaffna</li>
-                        </ul>
-                    </div>
-                </div>                   
+            <div class="tab-contents active-tab" id="skills">
+              <ul>
+                <li>
+                  <span> Programming Languages </span><br />Python, Java, C++,
+                  PHP, JavaScript, TypeScript
+                </li>
+                <li><span> Databases </span><br />MySQL, MongoDB, SQLite</li>
+                <li>
+                  <span> Web Technologies </span><br />CSS, HTML, React,
+                  Node.js, Express, NestJS
+                </li>
+                <li>
+                  <span> Tools & Methodologies </span><br />
+                  GitHub, Git, Jira, Agile, BitBucket
+                </li>
+              </ul>
             </div>
+            <div class="tab-contents" id="Certifications and Awards">
+              <ul>
+                <li>
+                  <a
+                    href="https://coursera.org/share/9789c5fcd41969a85f3aa3260ebb4d08"
+                    target="_blank"
+                    ><span> Web Development</span></a
+                  ><br />
+                </li>
+                <li>
+                  <a
+                    href="https://coursera.org/share/390f80535f1e7f7e4e67fe157968178f"
+                    target="_blank"
+                    ><span> Python Data Structures</span></a
+                  ><br />
+                </li>
+                <li>
+                  <a
+                    href="  https://coursera.org/share/1e5896e8ddb78b6510cb25724b93e943"
+                    target="_blank"
+                    ><span> Python to Access Web Data</span></a
+                  ><br />
+                </li>
+                <li>
+                  <a
+                    href=" https://coursera.org/share/27f57b505a34c69950119f9d5c3e4064"
+                    target="_blank"
+                    ><span> Google IT Support</span></a
+                  ><br />
+                </li>
+                <li><span> IEEE Xtreme 16.0 </span><br /></li>
+                <li><span> IEEE Xtreme 17.0 </span><br /></li>
+              </ul>
+            </div>
+            <div class="tab-contents" id="Education">
+              <ul>
+                <li>
+                  <span>2011 - 2019</span><br />Bandaranayake College Gampaha
+                </li>
+                <li>
+                  <span>2021 - 2025</span><br />BSc. Engineering (Hons.) In
+                  Computer Engineering<br />University of Jaffna
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
-<!-- Services -->
-    <div id = "services">
-        <div class = "container">
-            <h1 class = "sub-title">My Services</h1>
-            <div class = "services-list">
-                <div>
-                    <i class="fa-solid fa-mobile"></i>
-                    <h2>Mobile App Development</h2>
-                    <p>I build cross-platform mobile apps with React Native, integrating 
-                        authentication, APIs, and smooth UI/UX.</p>
-                </div>
-                <div>
-                    <i class="fa-solid fa-laptop"></i>
-                    <h2> Web & Full-Stack Development</h2>
-                    <p>I build scalable and dynamic web applications using MERN stack, PHP, MySQL, 
-                        and JavaScript, ensuring both frontend and backend functionality with a 
-                        smooth user experience.</p>
-                </div>
-                <div>
-                    <i class="fa-solid fa-hexagon-nodes"></i>
-                    <h2>Machine Learning & AI</h2>
-                    <p>I develop deep learning models for tasks like face detection, 
-                        gesture recognition, and handwritten digit classification.</p>
-                </div>
-            </div> 
+    <!-- Services -->
+    <div id="services">
+      <div class="container">
+        <h1 class="sub-title">My Services</h1>
+        <div class="services-list">
+          <div>
+            <i class="fa-solid fa-mobile"></i>
+            <h2>Mobile App Development</h2>
+            <p>
+              I build cross-platform mobile apps with React Native, integrating
+              authentication, APIs, and smooth UI/UX.
+            </p>
+          </div>
+          <div>
+            <i class="fa-solid fa-laptop"></i>
+            <h2>Web & Full-Stack Development</h2>
+            <p>
+              I build scalable and dynamic web applications using MERN stack,
+              PHP, MySQL, and JavaScript, ensuring both frontend and backend
+              functionality with a smooth user experience.
+            </p>
+          </div>
+          <div>
+            <i class="fa-solid fa-hexagon-nodes"></i>
+            <h2>Machine Learning & AI</h2>
+            <p>
+              I develop deep learning models for tasks like face detection,
+              gesture recognition, and handwritten digit classification.
+            </p>
+          </div>
         </div>
+      </div>
     </div>
 
-<!-- My Projects -->
-    <div id = "projects">
-        <div class="container">
-            <h1 class = "sub-title" >My Projects</h1>
-                <div class="work-list">
-                    <div class="work">
-                        <img src="images/project1.png">
-                        <div class="layer">
-                            <h3>React Native Mobile Application</h3>
-                            <p>
-                                Developed a mobile application using React Native, integrating Firebase Authentication 
-                                for secure user login, registration and user profile 
-                                management and utilized the Game of Thrones API.
-                            </p>
-                            <a href="https://github.com/ItsME-TM/my_application" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-                    <div class="work">
-                        <img src="images/project2.png">
-                        <div class="layer">
-                            <h3>Lab Booking System</h3>
-                            <p>
-                                Contributed as a Senior Software Developer to a lab booking system built with the MERN stack. 
-                                Developed both frontend and backend features, ensuring a 
-                                clean design and robust system functionality. 
-                            </p>
-                            <a href="https://github.com/ItsME-TM/Comlab-Booking-System" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-                    <div class="work">
-                        <img src="images/project5.png">
-                        <div class="layer">
-                            <h3>Gesture Recognition</h3>
-                            <p>
-                                Developed a real-time gesture recognition system using MediaPipe and a feed-forward 
-                                neural network. Optimized for real-time performance and efficient hand gesture classification. 
-                            </p>
-                            <a href="https://github.com/ItsME-TM/computer_vision_gesture_recognition" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-                    <div class="work hidden">
-                        <img src="images/project10.jpg">
-                        <div class="layer">
-                            <h3>Tasklet <br>(React Native App)</h3>
-                            <p>
-                                I built a cross-platform mobile app using React Native with Expo, designed to manage shopping lists, task countdowns, 
-                                and quick idea notes.
-                            </p>
-                            <a href="https://github.com/ItsME-TM/Tasklet" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-                    <div class="work hidden">
-                        <img src="images/project11.png">
-                        <div class="layer">
-                            <h3>BEATS MUSIC</h3>
-                            <p>
-                                Developed a modern music streaming web app with Next.js and React, featuring Firebase authentication, 
-                                a custom lyric-aware player, and curated playlists. This project demonstrates full-stack integration, 
-                                responsive UI design, and seamless user interaction. 
-                            </p>
-                            <a href="https://beats-music-nu.vercel.app" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-                    <div class="work hidden">
-                        <img src="images/project4.png">
-                        <div class="layer">
-                            <h3>Face Detection</h3>
-                            <p>
-                                Created a custom CNN model and fine-tuned a pre-trained VGG16 model to classify 
-                                real and fake faces. This project involved advanced machine learning techniques and 
-                                computer vision principles. 
-                            </p>
-                            <a href="https://github.com/ItsME-TM/Real-Fake-Face-Detection" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-                    <div class="work hidden">
-                        <img src="images/project9.png">
-                        <div class="layer">
-                            <h3>Task Manager</h3>
-                            <p>
-                                Developed a task management API with NestJS, TypeScript, and PostgreSQL. Used JWT 
-                                auth, RBAC, TypeORM, and MVC structure for clean code, with full frontend integration support and data validation.
-                            </p>
-                            <a href="https://github.com/ItsME-TM/task-manager-NestJS" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-                    <div class="work hidden">
-                        <img src="images/project3.png">
-                        <div class="layer">
-                            <h3>Light Weight Facebook</h3>
-                            <p>
-                                Built a basic social networking platform using PHP and MySQL, implementing core 
-                                functionalities such as friend management and group creation. 
-                            </p>
-                            <a href="https://github.com/ItsME-TM/Learn-PHP" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-                    <div class="work hidden">
-                        <img src="images/project6.png">
-                        <div class="layer">
-                            <h3>Number Identifier</h3>
-                            <p>
-                                Developed a machine learning model to accurately recognize and classify handwritten digits, 
-                                and created a comprehensive Jupyter Notebook to demonstrate the training and validation process. 
-                            </p>
-                            <a href="https://github.com/ItsME-TM/Number-Identifier" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-                    <div class="work hidden">
-                        <img src="images/project7.png">
-                        <div class="layer">
-                            <h3> AIML Assistant</h3>
-                            <p>
-                                DDeveloped a voice-activated assistant using Python and AIML, capable of performing simple tasks 
-                                and engaging in basic conversational interactions. 
-                            </p>
-                            <a href="https://github.com/ItsME-TM/My-Assistant" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-                    <div class="work hidden">
-                        <img src="images/project8.png">
-                        <div class="layer">
-                            <h3>My Website</h3>
-                            <p>
-                                I am building a personal portfolio website to showcase my skills, projects, and experiences. 
-                                The site highlights my expertise in web development with an interactive and user-friendly design.
-                            </p>
-                            <a href="https://github.com/ItsME-TM/My_portfolio" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <button class = "btn btn2 btn3">Show More</button>
+    <!-- My Projects -->
+    <div id="projects">
+      <div class="container">
+        <h1 class="sub-title">My Projects</h1>
+        <div class="work-list">
+          <div class="work">
+            <img src="images/project12.png" />
+            <div class="layer">
+              <h3>TMchat - Chat Application</h3>
+              <p>
+                TMchat is a real-time MERN-based messaging app with JWT
+                authentication, Socket.io chat, Cloudinary profile management,
+                online status tracking, Arcjet security, and a sleek, responsive
+                UI built with React, TailwindCSS, DaisyUI, and Zustand.
+              </p>
+              <a href="https://github.com/ItsME-TM/TMchat" target="_blank"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="work">
+            <img src="images/project2.png" />
+            <div class="layer">
+              <h3>Lab Booking System</h3>
+              <p>
+                Contributed as a Senior Software Developer to a lab booking
+                system built with the MERN stack. Developed both frontend and
+                backend features, ensuring a clean design and robust system
+                functionality.
+              </p>
+              <a
+                href="https://github.com/ItsME-TM/Comlab-Booking-System"
+                target="_blank"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="work">
+            <img src="images/project11.png" />
+            <div class="layer">
+              <h3>BEATS MUSIC</h3>
+              <p>
+                Developed a modern music streaming web app with Next.js and React, featuring Firebase authentication, 
+                a custom lyric-aware player, and curated playlists. This project demonstrates full-stack integration, 
+                responsive UI design, and seamless user interaction. 
+              </p>
+              <a
+                href="https://github.com/ItsME-TM/beats-music"
+                target="_blank"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
         </div>
+        <div class="work-list more-projects" id="more-projects">
+                      <div class="work">
+            <img src="images/project9.png" />
+            <div class="layer">
+              <h3>Task Manager</h3>
+              <p>
+                Developed a task management API with NestJS, TypeScript, and
+                PostgreSQL. Used JWT auth, RBAC, TypeORM, and MVC structure for
+                clean code, with full frontend integration support and data
+                validation.
+              </p>
+              <a
+                href="https://github.com/ItsME-TM/task-manager-NestJS"
+                target="_blank"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="work">
+            <img src="images/project1.png" />
+            <div class="layer">
+              <h3>React Native Mobile Application</h3>
+              <p>
+                Developed a mobile application using React Native, integrating
+                Firebase Authentication for secure user login, registration and
+                user profile management and utilized the Game of Thrones API.
+              </p>
+              <a
+                href="https://github.com/ItsME-TM/my_application"
+                target="_blank"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="work">
+            <img src="images/project10.jpg" />
+            <div class="layer">
+              <h3>Tasklet <br />(React Native App)</h3>
+              <p>
+                I built a cross-platform mobile app using React Native with
+                Expo, designed to manage shopping lists, task countdowns, and
+                quick idea notes.
+              </p>
+              <a href="https://github.com/ItsME-TM/Tasklet" target="_blank"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="work">
+            <img src="images/project5.png" />
+            <div class="layer">
+              <h3>Gesture Recognition</h3>
+              <p>
+                Developed a real-time gesture recognition system using MediaPipe
+                and a feed-forward neural network. Optimized for real-time
+                performance and efficient hand gesture classification.
+              </p>
+              <a
+                href="https://github.com/ItsME-TM/computer_vision_gesture_recognition"
+                target="_blank"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="work">
+            <img src="images/project4.png" />
+            <div class="layer">
+              <h3>Face Detection</h3>
+              <p>
+                Created a custom CNN model and fine-tuned a pre-trained VGG16
+                model to classify real and fake faces. This project involved
+                advanced machine learning techniques and computer vision
+                principles.
+              </p>
+              <a
+                href="https://github.com/ItsME-TM/Real-Fake-Face-Detection"
+                target="_blank"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="work">
+            <img src="images/project3.png" />
+            <div class="layer">
+              <h3>Light Weight Facebook</h3>
+              <p>
+                Built a basic social networking platform using PHP and MySQL,
+                implementing core functionalities such as friend management and
+                group creation.
+              </p>
+              <a href="https://github.com/ItsME-TM/Learn-PHP" target="_blank"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="work">
+            <img src="images/project6.png" />
+            <div class="layer">
+              <h3>Number Identifier</h3>
+              <p>
+                Developed a machine learning model to accurately recognize and
+                classify handwritten digits, and created a comprehensive Jupyter
+                Notebook to demonstrate the training and validation process.
+              </p>
+              <a
+                href="https://github.com/ItsME-TM/Number-Identifier"
+                target="_blank"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="work">
+            <img src="images/project7.png" />
+            <div class="layer">
+              <h3>AIML Assistant</h3>
+              <p>
+                DDeveloped a voice-activated assistant using Python and AIML,
+                capable of performing simple tasks and engaging in basic
+                conversational interactions.
+              </p>
+              <a href="https://github.com/ItsME-TM/My-Assistant" target="_blank"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+          <div class="work">
+            <img src="images/project8.png" />
+            <div class="layer">
+              <h3>My Website</h3>
+              <p>
+                I am building a personal portfolio website to showcase my
+                skills, projects, and experiences. The site highlights my
+                expertise in web development with an interactive and
+                user-friendly design.
+              </p>
+              <a href="https://github.com/ItsME-TM/My_portfolio" target="_blank"
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn2 btn3">Show More</button>
+      </div>
     </div>
 
-<!-- Contact -->
+    <!-- Contact -->
     <div id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="contact-left">
-                    <h1 class = "sub-title">Contact Me</h1>
-                    <p><i class="fa-solid fa-envelope"></i>thushanmalaka123@gmail.com</p>
-                    <p><i class="fa-solid fa-mobile-screen"></i>(+94) 71 788 6186</p>
-                    <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/thushan-malaka-1885851ba/"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/ItsME-TM/"><i class="fa-brands fa-github"></i></a>
-                    </div>
-                    <a href="images/Thushan Ranasinghe.pdf" download class = "btn btn2" >Download CV</a>
-                </div>
-                <div class="contact-right">
-                    <form name="submit-to-google-sheet">
-                        <input type="text" name = "Name" placeholder="Your Name" required>
-                        <input type="email" name = "Email" placeholder="Your Email" required>
-                        <textarea name="Message" row = "6" placeholder="Your Message" required></textarea>
-                        <button type = "submit" class = "btn btn2" >Submit</button>
-                    </form>
-                    <span id = "msg"></span>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="contact-left">
+            <h1 class="sub-title">Contact Me</h1>
+            <p>
+              <i class="fa-solid fa-envelope"></i>thushanmalaka123@gmail.com
+            </p>
+            <p><i class="fa-solid fa-mobile-screen"></i>(+94) 71 788 6186</p>
+            <div class="social-icons">
+              <a href="https://www.linkedin.com/in/thushan-malaka-1885851ba/"
+                ><i class="fa-brands fa-linkedin"></i
+              ></a>
+              <a href="https://github.com/ItsME-TM/"
+                ><i class="fa-brands fa-github"></i
+              ></a>
             </div>
+            <a href="images/Thushan Ranasinghe.pdf" download class="btn btn2"
+              >Download CV</a
+            >
+          </div>
+          <div class="contact-right">
+            <form name="submit-to-google-sheet">
+              <input type="text" name="Name" placeholder="Your Name" required />
+              <input
+                type="email"
+                name="Email"
+                placeholder="Your Email"
+                required
+              />
+              <textarea
+                name="Message"
+                row="6"
+                placeholder="Your Message"
+                required
+              ></textarea>
+              <button type="submit" class="btn btn2">Submit</button>
+            </form>
+            <span id="msg"></span>
+          </div>
         </div>
-        <div class="copyright">
-            <p>Created by Thushan Malaka | &copy; 2025 All rights reserved</p>
-        </div>
+      </div>
+      <div class="copyright">
+        <p>Created by Thushan Malaka | &copy; 2025 All rights reserved</p>
+      </div>
     </div>
 
     <script>
-        document.querySelector('.btn.btn2.btn3').addEventListener('click', function () {
-            let hiddenProjects = document.querySelectorAll('.work.hidden');
-            let showMoreBtn = this;
+      document
+        .querySelector(".btn.btn2.btn3")
+        .addEventListener("click", function () {
+          let moreProjects = document.getElementById("more-projects");
+          let showMoreBtn = this;
 
-            let isHidden = [...hiddenProjects].some(project => !project.classList.contains('show'));
-
-            hiddenProjects.forEach(project => {
-                if (isHidden) {
-                    project.classList.add('show'); 
-                } else {
-                    project.classList.remove('show'); 
-                }
-            });
-
-            showMoreBtn.innerText = isHidden ? "Show Less" : "Show More";
+          if (moreProjects.classList.contains("show")) {
+            moreProjects.classList.remove("show");
+            showMoreBtn.innerText = "Show More";
+          } else {
+            moreProjects.classList.add("show");
+            showMoreBtn.innerText = "Show Less";
+          }
         });
-
     </script>
-    
-    <script>
-        var tablinks = document.getElementsByClassName("tab-links");
-        var tabcontents = document.getElementsByClassName("tab-contents");
 
-        function opentab(tabname){
-            for (tablink of tablinks){
-                tablink.classList.remove("active-link");
-            }
-            for (tabcontent of tabcontents){
-                tabcontent.classList.remove("active-tab");
-            }
-            event.currentTarget.classList.add("active-link");
-            document.getElementById(tabname).classList.add("active-tab");
-        }
-    </script>
     <script>
-        var sidemenu = document.getElementById("sidemenu");
-        
-        function openmenu(){
-            sidemenu.style.right = "0";
-        }
-        function closemenu(){
-            sidemenu.style.right = "-200px";
-        }
+      var tablinks = document.getElementsByClassName("tab-links");
+      var tabcontents = document.getElementsByClassName("tab-contents");
 
+      function opentab(tabname) {
+        for (tablink of tablinks) {
+          tablink.classList.remove("active-link");
+        }
+        for (tabcontent of tabcontents) {
+          tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+      }
     </script>
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxHGXwf71pGOqCMSKVhPh1jOdKewJKrjo6RsczMTP_S6lYAPUwxLix7krETgg7p3NN-Hg/exec'
-        const form = document.forms['submit-to-google-sheet']
-        const msg = document.getElementById("msg")
+      var sidemenu = document.getElementById("sidemenu");
 
-        form.addEventListener('submit', e => {
-          e.preventDefault()
-          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {msg.innerHTML = "Message Sent Successfully!"
-                setTimeout(function(){
-                    msg.innerHTML = ""
-                }, 5000)
-                form.reset()
-            })
-            .catch(error => console.error('Error!', error.message))
-        })
-      </script>
-</body>
+      function openmenu() {
+        sidemenu.style.right = "0";
+      }
+      function closemenu() {
+        sidemenu.style.right = "-200px";
+      }
+    </script>
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbxHGXwf71pGOqCMSKVhPh1jOdKewJKrjo6RsczMTP_S6lYAPUwxLix7krETgg7p3NN-Hg/exec";
+      const form = document.forms["submit-to-google-sheet"];
+      const msg = document.getElementById("msg");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => {
+            msg.innerHTML = "Message Sent Successfully!";
+            setTimeout(function () {
+              msg.innerHTML = "";
+            }, 5000);
+            form.reset();
+          })
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+  </body>
 </html>
