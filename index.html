@@ -26,11 +26,15 @@
           <i class="fa-solid fa-bars" onclick="openmenu()"></i>
         </nav>
         <div class="header-text">
-          <p>Computer Engineering Undergraduate</p>
+          <!-- Static text -->
+          <!-- <p>Computer Engineering Undergraduate</p>
           <h1>
             Hi, I'm <span>Thushan Malaka Ranasinghe</span><br />
             Welcome to my PortFolio
-          </h1>
+          </h1> -->
+          <div id="particle-text" class="particle-text-container">
+            <canvas id="particleCanvas" class="particle-canvas"></canvas>
+          </div>
         </div>
       </div>
     </div>
@@ -44,16 +48,12 @@
           <div class="about-col-2">
             <h1 class="sub-title">About Me</h1>
             <p>
-              Hi, I’m Thushan Malaka, a passionate and driven Computer
-              Engineering student with a strong interest in software
-              development, artificial intelligence, and data engineering. I
-              enjoy solving complex problems and building innovative solutions
-              using technologies like Java, JavaScript, and machine learning.
-              With hands-on experience in developing applications and working
-              with data, I am constantly learning and improving my skills to
-              stay ahead in the tech industry. I am eager to contribute my
-              knowledge and creativity to impactful projects while continuously
-              growing as a developer.
+              I am a results-driven Full-Stack Developer specializing in 
+              modern tech stacks like React, NestJS and PostgreSQL. My expertise 
+              covers the entire development lifecycle, from designing robust RESTful 
+              APIs to building high-quality, user-centric solutions. I have proven 
+              experience, including architecting a full-stack Service Desk system during
+               my internship at Sri Lanka Telecom.
             </p>
             <div class="tab-titles">
               <p class="tab-links active-link" onclick="opentab('skills')">
@@ -143,25 +143,30 @@
             <i class="fa-solid fa-mobile"></i>
             <h2>Mobile App Development</h2>
             <p>
-              I build cross-platform mobile apps with React Native, integrating
-              authentication, APIs, and smooth UI/UX.
+              I build cross-platform mobile apps with React Native, 
+              integrating authentication, APIs and smooth UI/UX. My 
+              experience includes using Expo and managing persistent 
+              storage with AsyncStorage for high-quality, native-feeling applications.
             </p>
           </div>
           <div>
             <i class="fa-solid fa-laptop"></i>
             <h2>Web & Full-Stack Development</h2>
             <p>
-              I build scalable and dynamic web applications using MERN stack,
-              PHP, MySQL, and JavaScript, ensuring both frontend and backend
-              functionality with a smooth user experience.
+              I develop scalable and dynamic web applications across the entire 
+              development lifecycle. I specialize in modern stacks like MERN, 
+              React/NestJS/PostgreSQL and Next.js, ensuring robust backend 
+              functionality and a smooth user experience with secure authentication and RESTful APIs.
             </p>
           </div>
           <div>
             <i class="fa-solid fa-hexagon-nodes"></i>
-            <h2>Machine Learning & AI</h2>
+            <h2>Real-Time System & API Development</h2>
             <p>
-              I develop deep learning models for tasks like face detection,
-              gesture recognition, and handwritten digit classification.
+              I engineer high-performance, real-time systems using technologies 
+              like Socket.io for instant communication and alerts. I design and 
+              optimize efficient RESTful APIs and database schemas to ensure system 
+              reliability under high-concurrency loads.
             </p>
           </div>
         </div>
@@ -210,20 +215,20 @@
             <div class="layer">
               <h3>BEATS MUSIC</h3>
               <p>
-                Developed a modern music streaming web app with Next.js and React, featuring Firebase authentication, 
-                a custom lyric-aware player, and curated playlists. This project demonstrates full-stack integration, 
-                responsive UI design, and seamless user interaction. 
+                Developed a modern music streaming web app with Next.js and
+                React, featuring Firebase authentication, a custom lyric-aware
+                player, and curated playlists. This project demonstrates
+                full-stack integration, responsive UI design, and seamless user
+                interaction.
               </p>
-              <a
-                href="https://github.com/ItsME-TM/beats-music"
-                target="_blank"
+              <a href="https://github.com/ItsME-TM/beats-music" target="_blank"
                 ><i class="fa-solid fa-arrow-up-right-from-square"></i
               ></a>
             </div>
           </div>
         </div>
         <div class="work-list more-projects" id="more-projects">
-                      <div class="work">
+          <div class="work">
             <img src="images/project9.png" />
             <div class="layer">
               <h3>Task Manager</h3>
@@ -416,6 +421,456 @@
     </div>
 
     <script>
+      // Particle Text Effect (vanilla JS port)
+      (function () {
+        const canvas = document.getElementById("particleCanvas");
+        if (!canvas) return;
+
+        // Sizing
+        function sizeCanvas() {
+          // Make canvas responsive to header container width
+          const container = document.getElementById("particle-text");
+          const width = window.innerWidth;
+          const isMobile = width < 768;
+
+          // Adjust height based on device - much taller on mobile for multi-line text
+          let height;
+          if (isMobile) {
+            height = Math.max(400, Math.floor(width * 0.9));
+          } else {
+            height = Math.max(500, Math.floor(width * 0.5));
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+        }
+        sizeCanvas();
+        window.addEventListener("resize", sizeCanvas);
+
+        const ctx = canvas.getContext("2d");
+
+        // Different text for mobile (multi-line) vs desktop (single line)
+        const isMobileView = window.innerWidth < 768;
+        // Mobile uses arrays for multi-line display, desktop uses strings
+        const words = isMobileView
+          ? [
+              ["Welcome", "to my", "Portfolio"],
+              ["Hi, I'm", "Thushan", "Ranasinghe"],
+              ["Computer", "Engineering", "Graduate"],
+            ]
+          : [
+              "Computer Engineering Graduate",
+              "Hi, I'm Thushan Malaka Ranasinghe",
+              "Welcome to my PortFolio",
+            ];
+
+        /** Utility types as comments for clarity
+         * Particle has pos, vel, acc, target, colors
+         */
+        // Adjust pixel steps based on screen size (lower = more particles but slower)
+        const pixelSteps = isMobileView ? 1 : 2;
+        const drawAsPoints = true;
+
+        const mouse = { x: 0, y: 0, isPressed: false, isRightClick: false };
+        const particles = [];
+        let animationId = null;
+        let frameCount = 0;
+        let wordIndex = 0;
+        let wordFormedFrame = 0; // Track when word is formed
+        let isWordFormed = false; // Flag to pause when word is complete
+        const formationThreshold = 120; // Frames to wait for word to form (~2 sec)
+        const holdDuration = isMobileView ? 160 : 180; // Shorter hold on mobile (~2 sec vs ~3 sec)
+
+        function mag(x, y) {
+          return Math.sqrt(x * x + y * y);
+        }
+
+        function generateRandomPos(x, y, m) {
+          const randomX = Math.random() * 1000;
+          const randomY = Math.random() * 500;
+          let dx = randomX - x;
+          let dy = randomY - y;
+          const len = mag(dx, dy);
+          if (len > 0) {
+            dx = (dx / len) * m;
+            dy = (dy / len) * m;
+          }
+          return { x: x + dx, y: y + dy };
+        }
+
+        function Particle() {
+          this.pos = { x: 0, y: 0 };
+          this.vel = { x: 0, y: 0 };
+          this.acc = { x: 0, y: 0 };
+          this.target = { x: 0, y: 0 };
+
+          this.closeEnoughTarget = 100;
+          this.maxSpeed = 4; // Faster speed
+          this.maxForce = 0.15; // Good force for smooth movement
+          this.particleSize = 10;
+          this.isKilled = false;
+
+          this.startColor = { r: 0, g: 0, b: 0 };
+          this.targetColor = { r: 0, g: 0, b: 0 };
+          this.colorWeight = 0;
+          this.colorBlendRate = 0.01;
+        }
+
+        Particle.prototype.move = function () {
+          let proximityMult = 1;
+          const distance = mag(
+            this.pos.x - this.target.x,
+            this.pos.y - this.target.y
+          );
+          if (distance < this.closeEnoughTarget) {
+            proximityMult = distance / this.closeEnoughTarget;
+          }
+
+          let tx = this.target.x - this.pos.x;
+          let ty = this.target.y - this.pos.y;
+          const tmag = mag(tx, ty);
+          if (tmag > 0) {
+            tx = (tx / tmag) * this.maxSpeed * proximityMult;
+            ty = (ty / tmag) * this.maxSpeed * proximityMult;
+          }
+
+          let sx = tx - this.vel.x;
+          let sy = ty - this.vel.y;
+          const smag = mag(sx, sy);
+          if (smag > 0) {
+            sx = (sx / smag) * this.maxForce;
+            sy = (sy / smag) * this.maxForce;
+          }
+
+          this.acc.x += sx;
+          this.acc.y += sy;
+
+          this.vel.x += this.acc.x;
+          this.vel.y += this.acc.y;
+          this.pos.x += this.vel.x;
+          this.pos.y += this.vel.y;
+          this.acc.x = 0;
+          this.acc.y = 0;
+        };
+
+        Particle.prototype.draw = function (ctx, asPoints) {
+          if (this.colorWeight < 1.0) {
+            this.colorWeight = Math.min(
+              this.colorWeight + this.colorBlendRate,
+              1.0
+            );
+          }
+          const r = Math.round(
+            this.startColor.r +
+              (this.targetColor.r - this.startColor.r) * this.colorWeight
+          );
+          const g = Math.round(
+            this.startColor.g +
+              (this.targetColor.g - this.startColor.g) * this.colorWeight
+          );
+          const b = Math.round(
+            this.startColor.b +
+              (this.targetColor.b - this.startColor.b) * this.colorWeight
+          );
+          ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+          if (asPoints) {
+            ctx.fillRect(this.pos.x, this.pos.y, 1, 1); // Larger particles for better quality
+          } else {
+            ctx.beginPath();
+            ctx.arc(
+              this.pos.x,
+              this.pos.y,
+              this.particleSize / 2,
+              0,
+              Math.PI * 2
+            );
+            ctx.fill();
+          }
+        };
+
+        Particle.prototype.kill = function (width, height) {
+          if (!this.isKilled) {
+            const rp = generateRandomPos(
+              width / 2,
+              height / 2,
+              (width + height) / 2
+            );
+            this.target.x = rp.x;
+            this.target.y = rp.y;
+            this.startColor = {
+              r:
+                this.startColor.r +
+                (this.targetColor.r - this.startColor.r) * this.colorWeight,
+              g:
+                this.startColor.g +
+                (this.targetColor.g - this.startColor.g) * this.colorWeight,
+              b:
+                this.startColor.b +
+                (this.targetColor.b - this.startColor.b) * this.colorWeight,
+            };
+            this.targetColor = { r: 0, g: 0, b: 0 };
+            this.colorWeight = 0;
+            this.isKilled = true;
+          }
+        };
+
+        function nextWord(word) {
+          const off = document.createElement("canvas");
+          off.width = canvas.width;
+          off.height = canvas.height;
+          const octx = off.getContext("2d");
+          octx.fillStyle = "white";
+
+          // Responsive font size based on screen width
+          const isMobile = canvas.width < 768;
+          const isTablet = canvas.width >= 768 && canvas.width < 1024;
+
+          let base;
+          let textX;
+          let maxWidth;
+          let textY;
+
+          if (isMobile) {
+            // Mobile: larger and wider font for multi-line display
+            base = Math.max(50, Math.floor(canvas.width * 0.13));
+            textX = canvas.width * 0.05;
+            maxWidth = canvas.width * 0.95;
+            textY = canvas.height * 0.2; // Start higher for multi-line
+          } else if (isTablet) {
+            // Tablet: medium sizing
+            base = Math.max(45, Math.floor(canvas.width * 0.06));
+            textX = canvas.width * 0.05;
+            maxWidth = canvas.width * 0.75;
+            textY = canvas.height * 0.4;
+          } else {
+            // Desktop: original sizing
+            base = Math.max(60, Math.floor(canvas.width * 0.065));
+            textX = canvas.width * 0.05;
+            maxWidth = canvas.width * 0.6;
+            textY = canvas.height * 0.4;
+          }
+
+          octx.font = `bold ${base}px Arial`;
+          octx.textAlign = "left";
+          octx.textBaseline = "middle";
+
+          // Handle multi-line text (array) vs single line (string)
+          if (Array.isArray(word)) {
+            // Multi-line: draw each line with proper spacing
+            const lineHeight = base * 1.3;
+            const totalHeight = word.length * lineHeight;
+            // Position text higher on mobile (at about 12% from top)
+            const startY = canvas.height * 0.1 + lineHeight / 2;
+
+            word.forEach((line, index) => {
+              octx.fillText(line, textX, startY + index * lineHeight, maxWidth);
+            });
+          } else {
+            // Single line
+            octx.fillText(word, textX, textY, maxWidth);
+          }
+
+          const imageData = octx.getImageData(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+          );
+          const pixels = imageData.data;
+
+          // Luminous/bright color palette that stands out on black background
+          const luminousColors = [
+            { r: 39, g: 230, b: 180 }, // Cyan/Teal
+            { r: 0, g: 255, b: 255 }, // Bright Cyan
+            { r: 255, g: 0, b: 255 }, // Magenta
+            { r: 0, g: 255, b: 128 }, // Spring Green
+            { r: 255, g: 100, b: 100 }, // Coral Red
+            { r: 100, g: 200, b: 255 }, // Sky Blue
+            { r: 255, g: 200, b: 50 }, // Golden Yellow
+            { r: 200, g: 100, b: 255 }, // Purple
+            { r: 50, g: 255, b: 200 }, // Aquamarine
+          ];
+          const newColor =
+            luminousColors[Math.floor(Math.random() * luminousColors.length)];
+
+          let pIndex = 0;
+          const coordsIndexes = [];
+          for (let i = 0; i < pixels.length; i += pixelSteps * 4)
+            coordsIndexes.push(i);
+          for (let i = coordsIndexes.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const tmp = coordsIndexes[i];
+            coordsIndexes[i] = coordsIndexes[j];
+            coordsIndexes[j] = tmp;
+          }
+
+          for (const coordIndex of coordsIndexes) {
+            const alpha = pixels[coordIndex + 3];
+            if (alpha > 0) {
+              const x = (coordIndex / 4) % canvas.width;
+              const y = Math.floor(coordIndex / 4 / canvas.width);
+
+              let particle;
+              if (pIndex < particles.length) {
+                particle = particles[pIndex];
+                particle.isKilled = false;
+                pIndex++;
+              } else {
+                particle = new Particle();
+                const rp = generateRandomPos(
+                  canvas.width / 2,
+                  canvas.height / 2,
+                  (canvas.width + canvas.height) / 2
+                );
+                particle.pos.x = rp.x;
+                particle.pos.y = rp.y;
+                particle.maxSpeed = Math.random() * 6 + 4; // Faster particles
+                particle.maxForce = particle.maxSpeed * 0.05;
+                particle.particleSize = Math.random() * 6 + 6;
+                particle.colorBlendRate = Math.random() * 0.03 + 0.005; // Normal color blending
+                particles.push(particle);
+              }
+
+              particle.startColor = {
+                r:
+                  particle.startColor.r +
+                  (particle.targetColor.r - particle.startColor.r) *
+                    particle.colorWeight,
+                g:
+                  particle.startColor.g +
+                  (particle.targetColor.g - particle.startColor.g) *
+                    particle.colorWeight,
+                b:
+                  particle.startColor.b +
+                  (particle.targetColor.b - particle.startColor.b) *
+                    particle.colorWeight,
+              };
+              particle.targetColor = newColor;
+              particle.colorWeight = 0;
+              particle.target.x = x;
+              particle.target.y = y;
+            }
+          }
+
+          for (let i = pIndex; i < particles.length; i++) {
+            particles[i].kill(canvas.width, canvas.height);
+          }
+        }
+
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          // Check if most particles have reached their targets (word is formed)
+          let settledCount = 0;
+          for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.move();
+            p.draw(ctx, drawAsPoints);
+
+            // Check if particle is close to target
+            const dist = mag(p.pos.x - p.target.x, p.pos.y - p.target.y);
+            if (dist < 5 && !p.isKilled) settledCount++;
+
+            if (p.isKilled) {
+              if (
+                p.pos.x < 0 ||
+                p.pos.x > canvas.width ||
+                p.pos.y < 0 ||
+                p.pos.y > canvas.height
+              ) {
+                particles.splice(i, 1);
+              }
+            }
+          }
+
+          if (mouse.isPressed && mouse.isLeftClick) {
+            for (const p of particles) {
+              const d = mag(p.pos.x - mouse.x, p.pos.y - mouse.y);
+              if (d < 50) p.kill(canvas.width, canvas.height);
+            }
+          }
+
+          frameCount++;
+
+          // Check if word is formed (most particles settled)
+          const activeParticles = particles.filter((p) => !p.isKilled).length;
+          if (
+            activeParticles > 0 &&
+            settledCount / activeParticles > 0.85 &&
+            !isWordFormed
+          ) {
+            isWordFormed = true;
+            wordFormedFrame = frameCount;
+          }
+
+          // After word is formed and held for holdDuration, transition to next word
+          if (isWordFormed && frameCount - wordFormedFrame > holdDuration) {
+            isWordFormed = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            nextWord(words[wordIndex]);
+          }
+
+          animationId = requestAnimationFrame(animate);
+        }
+
+        // Init
+        nextWord(words[0]);
+        animate();
+
+        // Mouse handlers
+        function setMouse(e) {
+          const rect = canvas.getBoundingClientRect();
+          mouse.x = e.clientX - rect.left;
+          mouse.y = e.clientY - rect.top;
+        }
+
+        // Touch handlers for mobile
+        function setTouch(e) {
+          const rect = canvas.getBoundingClientRect();
+          const touch = e.touches[0];
+          mouse.x = touch.clientX - rect.left;
+          mouse.y = touch.clientY - rect.top;
+        }
+
+        canvas.addEventListener("mousedown", function (e) {
+          mouse.isPressed = true;
+          mouse.isLeftClick = e.button === 0; // Left click
+          setMouse(e);
+        });
+        canvas.addEventListener("mouseup", function () {
+          mouse.isPressed = false;
+          mouse.isLeftClick = false;
+        });
+        canvas.addEventListener("mousemove", function (e) {
+          setMouse(e);
+        });
+
+        // Touch events for mobile splash effect
+        canvas.addEventListener("touchstart", function (e) {
+          mouse.isPressed = true;
+          mouse.isLeftClick = true;
+          setTouch(e);
+        });
+        canvas.addEventListener("touchend", function () {
+          mouse.isPressed = false;
+          mouse.isLeftClick = false;
+        });
+        canvas.addEventListener("touchmove", function (e) {
+          setTouch(e);
+        });
+
+        canvas.addEventListener("contextmenu", function (e) {
+          e.preventDefault();
+        });
+
+        // Cleanup on page unload
+        window.addEventListener("beforeunload", function () {
+          if (animationId) cancelAnimationFrame(animationId);
+        });
+      })();
+    </script>
+
+    <script>
       document
         .querySelector(".btn.btn2.btn3")
         .addEventListener("click", function () {
@@ -454,8 +909,15 @@
         sidemenu.style.right = "0";
       }
       function closemenu() {
-        sidemenu.style.right = "-200px";
+        sidemenu.style.right = "-100%";
       }
+
+      // Auto-close menu when a link is clicked
+      document.querySelectorAll("#sidemenu li a").forEach((link) => {
+        link.addEventListener("click", () => {
+          closemenu();
+        });
+      });
     </script>
     <script>
       const scriptURL =
