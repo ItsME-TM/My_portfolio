@@ -429,9 +429,17 @@
         function sizeCanvas() {
           // Make canvas responsive to header container width
           const container = document.getElementById("particle-text");
-          // Use window width to allow particles to use more space, but keep text logic relative
           const width = window.innerWidth;
-          const height = Math.max(500, Math.floor(width * 0.5)); // Taller canvas for better coverage
+          const isMobile = width < 768;
+
+          // Adjust height based on device - taller on mobile for better text display
+          let height;
+          if (isMobile) {
+            height = Math.max(300, Math.floor(width * 0.6)); // Taller ratio on mobile
+          } else {
+            height = Math.max(500, Math.floor(width * 0.5));
+          }
+
           canvas.width = width;
           canvas.height = height;
         }
@@ -439,16 +447,29 @@
         window.addEventListener("resize", sizeCanvas);
 
         const ctx = canvas.getContext("2d");
-        const words = [
-          "Computer Engineering Undergraduate",
-          "Hi, I'm Thushan Malaka Ranasinghe",
-          "Welcome to my PortFolio",
-        ];
+
+        // Different text for mobile (shorter) vs desktop
+        const isMobileView = window.innerWidth < 768;
+        const words = isMobileView
+          ? [
+              "Computer Engineering",
+              "Graduate",
+              "Hi, I'm Thushan",
+              "Malaka Ranasinghe",
+              "Welcome to",
+              "my PortFolio",
+            ]
+          : [
+              "Computer Engineering Graduate",
+              "Hi, I'm Thushan Malaka Ranasinghe",
+              "Welcome to my PortFolio",
+            ];
 
         /** Utility types as comments for clarity
          * Particle has pos, vel, acc, target, colors
          */
-        const pixelSteps = 6;
+        // Adjust pixel steps based on screen size (lower = more particles but slower)
+        const pixelSteps = isMobileView ? 4 : 3; // Slightly less dense on mobile for performance
         const drawAsPoints = true;
 
         const mouse = { x: 0, y: 0, isPressed: false, isRightClick: false };
@@ -459,7 +480,7 @@
         let wordFormedFrame = 0; // Track when word is formed
         let isWordFormed = false; // Flag to pause when word is complete
         const formationThreshold = 120; // Frames to wait for word to form (~2 sec)
-        const holdDuration = 180; // Frames to hold the word (~3 sec)
+        const holdDuration = isMobileView ? 120 : 180; // Shorter hold on mobile (~2 sec vs ~3 sec)
 
         function mag(x, y) {
           return Math.sqrt(x * x + y * y);
@@ -554,7 +575,7 @@
           );
           ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
           if (asPoints) {
-            ctx.fillRect(this.pos.x, this.pos.y, 2, 2);
+            ctx.fillRect(this.pos.x, this.pos.y, 1, 1); // Larger particles for better quality
           } else {
             ctx.beginPath();
             ctx.arc(
@@ -600,18 +621,40 @@
           off.height = canvas.height;
           const octx = off.getContext("2d");
           octx.fillStyle = "white";
-          // Adjust font based on canvas width for responsiveness
-          // Increased font size multiplier to fill space better on the left side
-          const base = Math.max(50, Math.floor(canvas.width * 0.055));
+
+          // Responsive font size based on screen width
+          const isMobile = canvas.width < 768;
+          const isTablet = canvas.width >= 768 && canvas.width < 1024;
+
+          let base;
+          let textX;
+          let maxWidth;
+          let textY;
+
+          if (isMobile) {
+            // Mobile: much larger font, use full width
+            base = Math.max(36, Math.floor(canvas.width * 0.12));
+            textX = canvas.width * 0.05;
+            maxWidth = canvas.width * 0.9; // Use 90% width on mobile
+            textY = canvas.height * 0.4; // Center vertically
+          } else if (isTablet) {
+            // Tablet: medium sizing
+            base = Math.max(45, Math.floor(canvas.width * 0.06));
+            textX = canvas.width * 0.05;
+            maxWidth = canvas.width * 0.75;
+            textY = canvas.height * 0.4;
+          } else {
+            // Desktop: original sizing
+            base = Math.max(60, Math.floor(canvas.width * 0.065));
+            textX = canvas.width * 0.05;
+            maxWidth = canvas.width * 0.6;
+            textY = canvas.height * 0.4;
+          }
+
           octx.font = `bold ${base}px Arial`;
           octx.textAlign = "left";
           octx.textBaseline = "middle";
-          // Text stays on the left side (about 5% from left edge)
-          // Text area is limited to about 65% of width to not overlap with person image
-          const textX = canvas.width * 0.05;
-          const maxWidth = canvas.width * 0.6; // Limit text width to left 60% of canvas
-          // Position text at 40% height (higher up to fill empty space at top)
-          octx.fillText(word, textX, canvas.height * 0.4, maxWidth);
+          octx.fillText(word, textX, textY, maxWidth);
 
           const imageData = octx.getImageData(
             0,

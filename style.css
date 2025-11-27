@@ -424,6 +424,11 @@ nav .fa-solid.fa-bars {
   .contacts.container.row.contact-left.fa-solid.fa-mobile-screen {
     text-decoration: none;
   }
+
+  /* Mobile particle effect adjustments */
+  .particle-text-container {
+    top: 5%; /* Position higher on mobile */
+  }
 }
 
 /* Particle Effect Styles */
