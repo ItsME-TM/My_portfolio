@@ -178,6 +178,9 @@ nav ul li a:hover::after {
   background: #004d40;
   transform: translateY(-10px);
 }
+#services p {
+  font-size: 18px;
+}
 
 /*--my Projects--*/
 #projects {
