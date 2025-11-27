@@ -432,10 +432,10 @@
           const width = window.innerWidth;
           const isMobile = width < 768;
 
-          // Adjust height based on device - taller on mobile for better text display
+          // Adjust height based on device - much taller on mobile for multi-line text
           let height;
           if (isMobile) {
-            height = Math.max(300, Math.floor(width * 0.6)); // Taller ratio on mobile
+            height = Math.max(400, Math.floor(width * 0.9)); // Taller for multi-line text
           } else {
             height = Math.max(500, Math.floor(width * 0.5));
           }
@@ -448,16 +448,14 @@
 
         const ctx = canvas.getContext("2d");
 
-        // Different text for mobile (shorter) vs desktop
+        // Different text for mobile (multi-line) vs desktop (single line)
         const isMobileView = window.innerWidth < 768;
+        // Mobile uses arrays for multi-line display, desktop uses strings
         const words = isMobileView
           ? [
-              "Computer Engineering",
-              "Graduate",
-              "Hi, I'm Thushan",
-              "Malaka Ranasinghe",
-              "Welcome to",
-              "my PortFolio",
+              ["Welcome", "to my", "Portfolio"],
+              ["Hi, I'm", "Thushan", "Ranasinghe"],
+              ["Computer", "Engineering", "Graduate"],
             ]
           : [
               "Computer Engineering Graduate",
@@ -469,7 +467,7 @@
          * Particle has pos, vel, acc, target, colors
          */
         // Adjust pixel steps based on screen size (lower = more particles but slower)
-        const pixelSteps = isMobileView ? 4 : 3; // Slightly less dense on mobile for performance
+        const pixelSteps = isMobileView ? 1 : 2; // Slightly less dense on mobile for performance
         const drawAsPoints = true;
 
         const mouse = { x: 0, y: 0, isPressed: false, isRightClick: false };
@@ -480,7 +478,7 @@
         let wordFormedFrame = 0; // Track when word is formed
         let isWordFormed = false; // Flag to pause when word is complete
         const formationThreshold = 120; // Frames to wait for word to form (~2 sec)
-        const holdDuration = isMobileView ? 120 : 180; // Shorter hold on mobile (~2 sec vs ~3 sec)
+        const holdDuration = isMobileView ? 160 : 180; // Shorter hold on mobile (~2 sec vs ~3 sec)
 
         function mag(x, y) {
           return Math.sqrt(x * x + y * y);
@@ -632,11 +630,11 @@
           let textY;
 
           if (isMobile) {
-            // Mobile: much larger font, use full width
-            base = Math.max(36, Math.floor(canvas.width * 0.12));
+            // Mobile: larger and wider font for multi-line display
+            base = Math.max(50, Math.floor(canvas.width * 0.13));
             textX = canvas.width * 0.05;
-            maxWidth = canvas.width * 0.9; // Use 90% width on mobile
-            textY = canvas.height * 0.4; // Center vertically
+            maxWidth = canvas.width * 0.95;
+            textY = canvas.height * 0.2; // Start higher for multi-line
           } else if (isTablet) {
             // Tablet: medium sizing
             base = Math.max(45, Math.floor(canvas.width * 0.06));
@@ -654,7 +652,22 @@
           octx.font = `bold ${base}px Arial`;
           octx.textAlign = "left";
           octx.textBaseline = "middle";
-          octx.fillText(word, textX, textY, maxWidth);
+
+          // Handle multi-line text (array) vs single line (string)
+          if (Array.isArray(word)) {
+            // Multi-line: draw each line with proper spacing
+            const lineHeight = base * 1.3;
+            const totalHeight = word.length * lineHeight;
+            // Position text higher on mobile (at about 12% from top)
+            const startY = canvas.height * 0.10 + lineHeight / 2;
+
+            word.forEach((line, index) => {
+              octx.fillText(line, textX, startY + index * lineHeight, maxWidth);
+            });
+          } else {
+            // Single line
+            octx.fillText(word, textX, textY, maxWidth);
+          }
 
           const imageData = octx.getImageData(
             0,
