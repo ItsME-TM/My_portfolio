@@ -664,11 +664,20 @@
           );
           const pixels = imageData.data;
 
-          const newColor = {
-            r: Math.floor(Math.random() * 255),
-            g: Math.floor(Math.random() * 255),
-            b: Math.floor(Math.random() * 255),
-          };
+          // Luminous/bright color palette that stands out on black background
+          const luminousColors = [
+            { r: 39, g: 230, b: 180 }, // Cyan/Teal
+            { r: 0, g: 255, b: 255 }, // Bright Cyan
+            { r: 255, g: 0, b: 255 }, // Magenta
+            { r: 0, g: 255, b: 128 }, // Spring Green
+            { r: 255, g: 100, b: 100 }, // Coral Red
+            { r: 100, g: 200, b: 255 }, // Sky Blue
+            { r: 255, g: 200, b: 50 }, // Golden Yellow
+            { r: 200, g: 100, b: 255 }, // Purple
+            { r: 50, g: 255, b: 200 }, // Aquamarine
+          ];
+          const newColor =
+            luminousColors[Math.floor(Math.random() * luminousColors.length)];
 
           let pIndex = 0;
           const coordsIndexes = [];
