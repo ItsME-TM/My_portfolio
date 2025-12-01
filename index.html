@@ -479,7 +479,7 @@
         let wordFormedFrame = 0; // Track when word is formed
         let isWordFormed = false; // Flag to pause when word is complete
         const formationThreshold = 120; // Frames to wait for word to form (~2 sec)
-        const holdDuration = isMobileView ? 160 : 180; // Shorter hold on mobile (~2 sec vs ~3 sec)
+        const holdDuration = isMobileView ? 160 : 160; // Shorter hold on mobile (~2 sec vs ~3 sec)
 
         function mag(x, y) {
           return Math.sqrt(x * x + y * y);
