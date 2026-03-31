@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -48,10 +48,13 @@
           <div class="about-col-2">
             <h1 class="sub-title">About Me</h1>
             <p>
-              Results-driven Computer Engineering graduate with a strong foundation in building production grade web applications and enterprise solutions. 
-Proven expertise in architecting real time systems and migrating legacy workflows to modern tech stacks like Go, NestJS, React and NextJS. 
-Published researcher in Cloud Workload Prediction with a deep interest in optimizing system reliability and automation through CI/CD and 
-Docker.
+              Results-driven Computer Engineering graduate with a strong
+              foundation in building production grade web applications and
+              enterprise solutions. Proven expertise in architecting real time
+              systems and migrating legacy workflows to modern tech stacks like
+              Go, NestJS, React and NextJS. Published researcher in Cloud
+              Workload Prediction with a deep interest in optimizing system
+              reliability and automation through CI/CD and Docker.
             </p>
             <div class="tab-titles">
               <p class="tab-links active-link" onclick="opentab('skills')">
@@ -65,7 +68,7 @@ Docker.
               </p>
               <p class="tab-links" onclick="opentab('Education')">Education</p>
             </div>
-            <div class="tab-contents active-tab" id="skills">
+            <!-- <div class="tab-contents active-tab" id="skills">
               <ul>
                 <li>
                   <span> Programming Languages </span><br />Python, Java, C++,
@@ -79,6 +82,33 @@ Docker.
                 <li>
                   <span> Tools & Methodologies </span><br />
                   GitHub, Git, Jira, Agile, BitBucket, Docker, Figma, Github Actions, Redis
+                </li>
+              </ul>
+            </div> -->
+            <div class="tab-contents active-tab" id="skills">
+              <ul>
+                <li>
+                  <span>Programming Languages</span><br />
+                  TypeScript, JavaScript, Go, Python, Java, C++
+                </li>
+                <li>
+                  <span>Backend Development</span><br />
+                  Node.js, NestJS, Express.js, Go (Gin), Socket.io, TypeORM
+                </li>
+                <li>
+                  <span>Frontend Development</span><br />
+                  React, Next.js, React Native (Expo), TailwindCSS, Zustand,
+                  Redux, Vite
+                </li>
+                <li>
+                  <span>Databases & Cloud</span><br />
+                  PostgreSQL, MongoDB, MySQL, Cloudflare R2, Firebase, Azure AD,
+                  Vercel
+                </li>
+                <li>
+                  <span>DevOps & Tools</span><br />
+                  Docker, GitHub Actions (CI/CD), Git, Jira, Agile, Postman,
+                  Prisma
                 </li>
               </ul>
             </div>
@@ -136,7 +166,7 @@ Docker.
     <div id="services">
       <div class="container">
         <h1 class="sub-title">My Services</h1>
-        <div class="services-list"> 
+        <!-- <div class="services-list"> 
           <div>
             <i class="fa-solid fa-laptop"></i>
             <h2>Web & Full-Stack Development</h2>
@@ -165,6 +195,39 @@ Docker.
               integrating authentication, APIs and smooth UI/UX. My 
               experience includes using Expo and managing persistent 
               storage with AsyncStorage for high-quality, native-feeling applications.
+            </p>
+          </div>
+        </div> -->
+        <div class="services-list">
+          <div>
+            <i class="fa-solid fa-code"></i>
+            <h2>Full-Stack & Backend Engineering</h2>
+            <p>
+              I architect scalable enterprise solutions and modern web
+              applications. Specializing in Go, NestJS, and
+              Next.js, I migrate legacy systems to high-performance
+              architectures while ensuring robust security through JWT and
+              Azure AD.
+            </p>
+          </div>
+          <div>
+            <i class="fa-solid fa-server"></i>
+            <h2>Real-Time Systems & API Design</h2>
+            <p>
+              I engineer high-concurrency systems utilizing Socket.io for
+              real-time alerts and instant communication. I design
+              optimized PostgreSQL and MongoDB schemas and RESTful APIs to
+              ensure reliability and data integrity under heavy loads.
+            </p>
+          </div>
+          <div>
+            <i class="fa-solid fa-microchip"></i>
+            <h2>Cloud Research & DevOps Automation</h2>
+            <p>
+              I implement automated CI/CD pipelines and containerization
+              using Docker and GitHub Actions. As a published researcher in
+              Cloud Workload Prediction, I apply deep learning models to
+              optimize cloud resource management.
             </p>
           </div>
         </div>
@@ -196,15 +259,13 @@ Docker.
             <div class="layer">
               <h3>TMdent</h3>
               <p>
-                TMdent is a modern dental appointment platform built with Next.js 
-                and PostgreSQL, featuring secure Clerk authentication, automated 
-                Nodemailer confirmations and AI voice integration via Vapi. It offers 
-                dedicated patient and admin dashboards with a polished, responsive UI 
-                powered by TailwindCSS.
+                TMdent is a modern dental appointment platform built with
+                Next.js and PostgreSQL, featuring secure Clerk authentication,
+                automated Nodemailer confirmations and AI voice integration via
+                Vapi. It offers dedicated patient and admin dashboards with a
+                polished, responsive UI powered by TailwindCSS.
               </p>
-              <a
-                href="https://github.com/ItsME-TM/tmdent"
-                target="_blank"
+              <a href="https://github.com/ItsME-TM/tmdent" target="_blank"
                 ><i class="fa-solid fa-arrow-up-right-from-square"></i
               ></a>
             </div>
@@ -536,7 +597,7 @@ Docker.
           let proximityMult = 1;
           const distance = mag(
             this.pos.x - this.target.x,
-            this.pos.y - this.target.y
+            this.pos.y - this.target.y,
           );
           if (distance < this.closeEnoughTarget) {
             proximityMult = distance / this.closeEnoughTarget;
@@ -573,20 +634,20 @@ Docker.
           if (this.colorWeight < 1.0) {
             this.colorWeight = Math.min(
               this.colorWeight + this.colorBlendRate,
-              1.0
+              1.0,
             );
           }
           const r = Math.round(
             this.startColor.r +
-              (this.targetColor.r - this.startColor.r) * this.colorWeight
+              (this.targetColor.r - this.startColor.r) * this.colorWeight,
           );
           const g = Math.round(
             this.startColor.g +
-              (this.targetColor.g - this.startColor.g) * this.colorWeight
+              (this.targetColor.g - this.startColor.g) * this.colorWeight,
           );
           const b = Math.round(
             this.startColor.b +
-              (this.targetColor.b - this.startColor.b) * this.colorWeight
+              (this.targetColor.b - this.startColor.b) * this.colorWeight,
           );
           ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
           if (asPoints) {
@@ -598,7 +659,7 @@ Docker.
               this.pos.y,
               this.particleSize / 2,
               0,
-              Math.PI * 2
+              Math.PI * 2,
             );
             ctx.fill();
           }
@@ -609,7 +670,7 @@ Docker.
             const rp = generateRandomPos(
               width / 2,
               height / 2,
-              (width + height) / 2
+              (width + height) / 2,
             );
             this.target.x = rp.x;
             this.target.y = rp.y;
@@ -690,7 +751,7 @@ Docker.
             0,
             0,
             canvas.width,
-            canvas.height
+            canvas.height,
           );
           const pixels = imageData.data;
 
@@ -736,7 +797,7 @@ Docker.
                 const rp = generateRandomPos(
                   canvas.width / 2,
                   canvas.height / 2,
-                  (canvas.width + canvas.height) / 2
+                  (canvas.width + canvas.height) / 2,
                 );
                 particle.pos.x = rp.x;
                 particle.pos.y = rp.y;
