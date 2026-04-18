@@ -109,8 +109,7 @@
                 <li>
                   <span>DevOps & Tools</span><br />
                   Docker, Docker Compose, Kubernetes, GitHub Actions (CI/CD),
-                  CircleCI, Travis CI, Git, Jira, Agile, Postman, Prisma,
-                   Jest
+                  CircleCI, Travis CI, Git, Jira, Agile, Postman, Prisma, Jest
                 </li>
               </ul>
             </div>
@@ -969,6 +968,43 @@
       var tablinks = document.getElementsByClassName("tab-links");
       var tabcontents = document.getElementsByClassName("tab-contents");
 
+      function setDesktopAboutTabHeight() {
+        if (window.innerWidth <= 600) {
+          for (var mobileTab of tabcontents) {
+            mobileTab.style.minHeight = "";
+          }
+          return;
+        }
+
+        var tallestTabHeight = 0;
+
+        for (var tabcontent of tabcontents) {
+          var isActive = tabcontent.classList.contains("active-tab");
+          tabcontent.style.minHeight = "0px";
+
+          if (!isActive) {
+            tabcontent.style.display = "block";
+            tabcontent.style.visibility = "hidden";
+          }
+
+          tallestTabHeight = Math.max(
+            tallestTabHeight,
+            tabcontent.scrollHeight,
+          );
+
+          if (!isActive) {
+            tabcontent.style.display = "";
+            tabcontent.style.visibility = "";
+          }
+        }
+
+        if (tallestTabHeight > 0) {
+          for (var desktopTab of tabcontents) {
+            desktopTab.style.minHeight = tallestTabHeight + "px";
+          }
+        }
+      }
+
       function opentab(tabname) {
         for (tablink of tablinks) {
           tablink.classList.remove("active-link");
@@ -978,7 +1014,12 @@
         }
         event.currentTarget.classList.add("active-link");
         document.getElementById(tabname).classList.add("active-tab");
+
+        setDesktopAboutTabHeight();
       }
+
+      setDesktopAboutTabHeight();
+      window.addEventListener("resize", setDesktopAboutTabHeight);
     </script>
     <script>
       var sidemenu = document.getElementById("sidemenu");
