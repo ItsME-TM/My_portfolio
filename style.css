@@ -145,6 +145,19 @@ nav ul li a:hover::after {
 .tab-contents.active-tab {
   display: block;
 }
+
+@media only screen and (min-width: 601px) {
+  .about-col-1 {
+    justify-content: flex-start;
+  }
+
+  .about-col-1 img {
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+}
+
 .tab-contents ul li a {
   text-decoration: none;
   color: inherit;
@@ -166,7 +179,9 @@ nav ul li a:hover::after {
   font-size: 13px;
   font-weight: 300;
   border-radius: 10px;
-  transition: background 0.5s, transform 0.5s;
+  transition:
+    background 0.5s,
+    transform 0.5s;
 }
 .services-list div i {
   font-size: 50px;
@@ -265,7 +280,9 @@ nav ul li a:hover::after {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 1s ease-out, opacity 1s ease-out,
+  transition:
+    max-height 1s ease-out,
+    opacity 1s ease-out,
     margin-top 1s ease-out;
 }
 
@@ -449,9 +466,6 @@ nav .fa-solid.fa-bars {
   }
   .contact-left p {
     font-size: 14px;
-  }
-  .contacts.container.row.contact-left.fa-solid.fa-mobile-screen {
-    text-decoration: none;
   }
 
   /* Mobile particle effect adjustments */
